@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <h1>Universitas Singaperbangsa Karawang</h1>
+    </header>
+    <div class="container">
+        <section class="content">
+            <h2>Cek Nilai Mahasiswa</h2>
+            <p>Silahkan lengkapi data di bawah ini untuk memeriksa grade nilai mahasiswa. </p>
+            <hr><br>
+            <form action="#" method="post">
+                <label for="nama"><b>Nama Lengkap:</b></label>
+                <input type="text" name="nama" id="nama" placeholder="Masukan Nama Lengkap" required>
+
+                <label for="nim"><b>NIM:</b></label>
+                <input type="text" name="nim" id="nim" placeholder="Masukan Nomor Induk Mahasiswa" required>
+
+                <label for="nilai"><b>Nilai Mata Kuliah:</b></label>
+                <input type="number" name="nilai" id="nilai" placeholder="Masukan Nilai Mata Kuliah" required>
+            
+                <button type="button" class="btn" onclick="cekNilai()">Cek Nilai</button>
+        </section>
+        <aside class="sidebar">
+            <h2>Hasil:</h2>
+            <p id="hasil"></p>
+        </aside>
+    </div>
+    <script src="main.js"></script> 
+</body>
+</html>
