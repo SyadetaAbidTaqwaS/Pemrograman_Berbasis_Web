@@ -14,4 +14,7 @@ echo "Jumlah Beli: " . $jumlahbeli . "<br>";
 echo "Total Harga (Sebelum Pajak): Rp " . $totalharga . ".000" . "<br>";
 echo "Pajak (10%): Rp " . $pajak . ".000" . "<br>";
 echo "<b>Total Bayar: Rp </b>" . ($totalharga + $pajak) . "<b>.000</b>" . "<br>";
+echo "<hr>";
+echo "<a href='../PRAKTIKUM_6/latihan_nilai.php'> Menuju ke Tugas Praktikum 6 (latihan_nilai)</a>";
 ?>
+
