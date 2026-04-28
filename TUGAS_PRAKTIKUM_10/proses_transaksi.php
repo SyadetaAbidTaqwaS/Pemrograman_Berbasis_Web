@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tanggal_pesanan = date('Y-m-d');
         $total_harga = 0;
 
-        // Insert pesanan
         $stmt = $conn->prepare("INSERT INTO Pesanan (Tanggal_Pesanan, Pelanggan_ID, Total_Harga) VALUES (?, ?, ?)");
         $stmt->bind_param("sid", $tanggal_pesanan, $pelanggan_id, $total_harga);
         $stmt->execute();
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $barang_id = $barang['id'];
             $kuantitas = $barang['kuantitas'];
 
-            // Ambil harga & stok
             $stmt = $conn->prepare("SELECT Harga, Stok FROM barang WHERE ID = ?");
             $stmt->bind_param("i", $barang_id);
             $stmt->execute();
@@ -34,20 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception("Stok tidak cukup!");
             }
 
-            // Insert detail
             $stmt = $conn->prepare("INSERT INTO Detail_Pesanan (Pesanan_ID, Barang_ID, Kuantitas, Harga_Per_Satuan) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("iiid", $pesanan_id, $barang_id, $kuantitas, $harga);
             $stmt->execute();
 
             $total_harga += $kuantitas * $harga;
 
-            // Update stok
             $stmt = $conn->prepare("UPDATE barang SET Stok = Stok - ? WHERE ID = ?");
             $stmt->bind_param("ii", $kuantitas, $barang_id);
             $stmt->execute();
         }
 
-        // Update total harga
         $stmt = $conn->prepare("UPDATE Pesanan SET Total_Harga = ? WHERE ID = ?");
         $stmt->bind_param("di", $total_harga, $pesanan_id);
         $stmt->execute();
